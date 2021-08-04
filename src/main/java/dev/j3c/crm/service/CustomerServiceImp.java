@@ -1,9 +1,11 @@
 package dev.j3c.crm.service;
 
 import dev.j3c.crm.entity.Customer;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class CustomerServiceImp implements CustomerService {
 
    @Override

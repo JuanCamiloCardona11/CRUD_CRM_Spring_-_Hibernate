@@ -1,9 +1,11 @@
 package dev.j3c.crm.dao;
 
 import dev.j3c.crm.entity.Customer;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public class CustomerDAOImp implements CustomerDAO {
 
    @Override
