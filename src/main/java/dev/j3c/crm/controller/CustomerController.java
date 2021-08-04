@@ -7,8 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 
 @Controller
@@ -24,5 +27,20 @@ public class CustomerController {
       model.addAttribute("customersList", customersList);
       return("list-customers");
    }
+
+   @GetMapping("/form-add-customer")
+   public String showFormAddCustomer(Model model) {
+      Customer customer = new Customer();
+      model.addAttribute("newCustomer", customer);
+      return("form-customer");
+   }
+
+   @PostMapping("/save-customer")
+   public String saveCustomer(@ModelAttribute("newCustomer") Customer customer) {
+      this.customerService.saveCustomer(customer);
+      return "redirect:/customer/list";
+   }
+
+
 
 }
