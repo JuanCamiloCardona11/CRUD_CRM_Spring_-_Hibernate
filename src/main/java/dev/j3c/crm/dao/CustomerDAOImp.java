@@ -17,24 +17,30 @@ public class CustomerDAOImp implements CustomerDAO {
 
    @Override
    public List<Customer> getCustomers() {
-      Session session = sessionFactory.getCurrentSession();
+      Session session = this.sessionFactory.getCurrentSession();
       List<Customer> listCustomers = session.createQuery("from Customer").getResultList();
       return listCustomers;
    }
 
    @Override
-   public Customer getCustomer(int id) {
-      return null;
+   public Customer getCustomer(int customerId) {
+      Session session = this.sessionFactory.getCurrentSession();
+      Customer customer = session.get(Customer.class, customerId);
+      return(customer);
    }
 
    @Override
    public void saveCustomer(Customer customer) {
-      Session session = sessionFactory.getCurrentSession();
-      session.save(customer);
+      Session session = this.sessionFactory.getCurrentSession();
+      session.saveOrUpdate(customer);
+      //session.save(customer);
    }
 
    @Override
-   public void deleteCustomer(int id) {
-
+   public void deleteCustomer(int customerId) {
+      Session session = this.sessionFactory.getCurrentSession();
+      Query query = session.createQuery("delete from Customer where id=:customerId");
+      query.setParameter("customerId",customerId);
+      query.executeUpdate();
    }
 }

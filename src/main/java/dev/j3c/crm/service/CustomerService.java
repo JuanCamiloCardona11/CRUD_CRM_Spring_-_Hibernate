@@ -8,10 +8,10 @@ public interface CustomerService {
 
    public List<Customer> getCustomers();
 
-   public Customer getCustomer(int id);
+   public Customer getCustomer(int customerId);
 
    public void saveCustomer(Customer customer);
 
-   public void deleteCustomer();
+   public void deleteCustomer(int customerId);
 
 }

@@ -17,10 +17,6 @@
     <h1 class="title">Customers Form</h1>
     <br>
     <form:form action="" method="post" modelAttribute="newCustomer">
-
-        <!-- I need to associate this data with customer id -->
-        <form:hidden path="id" />
-
         <div class="form-input">
             <label for="firstName">First Name:</label>
             <form:input path="firstName" id="firstName"/>

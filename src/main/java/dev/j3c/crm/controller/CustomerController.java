@@ -6,10 +6,7 @@ import dev.j3c.crm.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
@@ -39,6 +36,19 @@ public class CustomerController {
    public String saveCustomer(@ModelAttribute("newCustomer") Customer customer) {
       this.customerService.saveCustomer(customer);
       return "redirect:/customer/list";
+   }
+
+   @GetMapping("/show-form-update")
+   public String showFormUpdateCustomer(@RequestParam("customerId") int customerId, Model model) {
+      Customer customer = this.customerService.getCustomer(customerId);
+      model.addAttribute("customer", customer);
+      return("form-customer");
+   }
+
+   @GetMapping("/delete-customer")
+   public String deleteCustomer(@RequestParam("customerId") int customerId) {
+      this.customerService.deleteCustomer(customerId);
+      return("redirect:/customer/list");
    }
 
 

@@ -21,8 +21,9 @@ public class CustomerServiceImp implements CustomerService {
    }
 
    @Override
-   public Customer getCustomer(int id) {
-      return null;
+   @Transactional
+   public Customer getCustomer(int customerId) {
+      return this.customerDAO.getCustomer(customerId);
    }
 
    @Override
@@ -32,7 +33,8 @@ public class CustomerServiceImp implements CustomerService {
    }
 
    @Override
-   public void deleteCustomer() {
-
+   @Transactional
+   public void deleteCustomer(int customerId) {
+      this.customerDAO.deleteCustomer(customerId);
    }
 }
